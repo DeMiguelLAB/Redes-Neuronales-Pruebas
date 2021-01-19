@@ -24,8 +24,7 @@ import matplotlib.pyplot as plt
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
-from google.colab import drive
-drive.mount('/content/drive/')
+
 
 """La primera celda importa todo lo que se necesitara
 
