@@ -8,7 +8,9 @@ Original file is located at
 """
 
 import tensorflow as tf
+
 from tensorflow import keras
+
 from tensorflow.keras.models import Sequential 
 from tensorflow.keras.layers import Activation, Dense, Flatten
 from tensorflow.keras.optimizers import Adam
@@ -24,7 +26,7 @@ import matplotlib.pyplot as plt
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
-from google.colab import drive
+
 drive.mount('/content/drive/')
 
 """La primera celda importa todo lo que se necesitara
