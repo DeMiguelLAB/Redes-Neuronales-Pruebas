@@ -58,8 +58,15 @@ if os.path.isdir('train/dog') is False:
       shutil.move(c, 'test/dog')
 
 #####################################################
-#Retorno a directorio donde esta el .py
-os.chdir('../../')
+#Retorno a directorio donde esta el .py##############
+
+#Directorio ABNER:
+os.chdir('/Users/Abner/OneDrive - UNIVERSIDAD NACIONAL AUTÓNOMA DE MÉXICO/Documentos/Laboratorio/Redes/Redes-Neuronales-Pruebas')
+#Directorio de FELIPE:
+#    
+#Directorio de JAVO:    
+#
+
 
 """***El método chdir ()*** cambia el directorio de trabajo actual a la ruta dada 
 
