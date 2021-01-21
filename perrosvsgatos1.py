@@ -26,7 +26,7 @@ warnings.simplefilter(action='ignore', category=FutureWarning)
 
 physical_devices = tf.config.experimental.list_physical_devices('GPU')
 print('Num GPs Avaible:', len(physical_devices))
-tf.config.experimental.set_memory_growth(physical_devices[0], True)
+#tf.config.experimental.set_memory_growth(physical_devices[0], True)
 
 
 #Directorio de ABNER:
@@ -43,18 +43,24 @@ if os.path.isdir('train/dog') is False:
   os.makedirs('valid/cat')
   os.makedirs('test/dog')
   os.makedirs('test/cat')
+  
+#### Librerias ######
+# .glob encuentra todos los nombres de rutas que se asemejan a
+# un patrón especificado: glob.glob(pathname,*,recursive = False)
+######################
 
-  for c in random.sample(glob.glob('cat*'),500):
+
+for c in random.sample(glob.glob('train/cat*'),500):
       shutil.move(c, 'train/cat')
-  for c in random.sample(glob.glob('dog*'),500):
+for c in random.sample(glob.glob('train/dog*'),500):
       shutil.move(c, 'train/dog')
-  for c in random.sample(glob.glob('cat*'),100):
+for c in random.sample(glob.glob('train/cat*'),100):
       shutil.move(c, 'valid/cat')
-  for c in random.sample(glob.glob('dog*'),100):
+for c in random.sample(glob.glob('train/dog*'),100):
       shutil.move(c, 'valid/dog')
-  for c in random.sample(glob.glob('cat*'),50):
+for c in random.sample(glob.glob('train/cat*'),50):
       shutil.move(c, 'test/cat')
-  for c in random.sample(glob.glob('dog*'),50):
+for c in random.sample(glob.glob('train/dog*'),50):
       shutil.move(c, 'test/dog')
 
 #####################################################
@@ -73,18 +79,15 @@ os.chdir('/Users/Abner/OneDrive - UNIVERSIDAD NACIONAL AUTÓNOMA DE MÉXICO/Docu
 ***os.path.isdir*** El método en Python se usa para verificar si la ruta especificada es un directorio existente o no. Este método sigue un enlace simbólico, lo que significa que si la ruta especificada es un enlace simbólico que apunta a un directorio, el método devolverá True.
 """
 
-train_path='data/dogs-vs-cats/train'
-valid_path='data/dogs-vs-cats/valid'
-test_path='data/dogs-vs-cats/test'
+train_path='Data/dogs-vs-cats/train'
+valid_path='Data/dogs-vs-cats/valid'
+test_path='Data/dogs-vs-cats/test'
 
 """se crea la variable que usaremos para la red donde es la ruta de nuestros datos"""
 
-train_batches=ImageDataGenerator(preprocessing_function=tf.keras.applications.vgg16.preprocess_input) \
-      .flow_from_directory(directory=train_path, target_size = (224,224),classes = ['cat','dog'], batch_size=10)
-valid_batches=ImageDataGenerator(preprocessing_function=tf.keras.applications.vgg16.preprocess_input) \
-      .flow_from_directory(directory=valid_path, target_size = (224,224),classes = ['cat','dog'], batch_size=10)
-test_batches=ImageDataGenerator(preprocessing_function=tf.keras.applications.vgg16.preprocess_input) \
-      .flow_from_directory(directory=test_path, target_size = (224,224),classes = ['cat','dog'], batch_size=10, shuffel = False)
+train_batches=ImageDataGenerator(preprocessing_function=tf.keras.applications.vgg16.preprocess_input).flow_from_directory(directory=train_path, target_size = (224,224),classes = ['cat','dog'], batch_size=1000)
+valid_batches=ImageDataGenerator(preprocessing_function=tf.keras.applications.vgg16.preprocess_input).flow_from_directory(directory=valid_path, target_size = (224,224),classes = ['cat','dog'], batch_size=200)
+test_batches=ImageDataGenerator(preprocessing_function=tf.keras.applications.vgg16.preprocess_input).flow_from_directory(directory=test_path, target_size = (224,224),classes = ['cat','dog'], batch_size=100)
 
 """- se crean los lotes ( grupos de imagenes ) para entrenar, y test la red nueronal pero adicionalmente estamos procesando las imagenes (***preprocessing_function=tf.keras.applications.vgg16.preprocess_input***)
 antes de entrar a la red con el modelo popilar vgg16, confijugando el tamaño y y las clases
