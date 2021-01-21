@@ -27,7 +27,7 @@ import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
 
-drive.mount('/content/drive/')
+
 
 """La primera celda importa todo lo que se necesitara
 
@@ -53,7 +53,7 @@ tf.config.experimental.set_memory_growth(physical_devices[0], True)
 
 """***physical_device=tf.config.experimental.list_physical_device() ***:  Esta API permite consultar los recursos físicos de hardware antes de la inicialización del tiempo de ejecución. Por lo tanto, brinda la oportunidad de llamar a cualquier API de configuración adicional."""
 
-os.chdir('/content/data/dogs-vs-cats')
+os.chdir('C:\Users\fraja\Documents\datosperro')
 if os.path.isdir('train/dog') is False:
   os.makedirs('train/dog')
   os.makedirs('train/cat')
